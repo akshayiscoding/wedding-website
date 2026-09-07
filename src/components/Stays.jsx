@@ -2,23 +2,18 @@ import { useRef } from 'react';
 import { useReveal, useTilt } from '../hooks/useAnimations';
 import './Stays.css';
 import Mandala from './Mandala';
+import { useLang } from '../i18n';
 
 const MAPS_URL =
   'https://www.google.com/maps/place/golden+eagle+jaipur/data=!4m2!3m1!1s0x396db4c0e33f76a3:0x262878d24c5bda50?sa=X&ved=1t:242&ictx=111';
 const MAPS_EMBED = 'https://www.google.com/maps?q=Golden%20Eagle%20Jaipur&z=15&output=embed';
 
-const AMENITIES = [
-  'Complimentary breakfast',
-  'Airport transfer',
-  'Free parking',
-  'Fast Wi-Fi',
-  '24×7 front desk',
-  'Travel desk',
-];
-
 export default function Stays() {
   const infoRef = useRef(null);
   const mapRef = useRef(null);
+  const { t } = useLang();
+
+  const AMENITIES = ['stays.a1', 'stays.a2', 'stays.a3', 'stays.a4', 'stays.a5', 'stays.a6'];
 
   useReveal(infoRef, { style: 'from-left', start: 'top 80%' });
   useReveal(mapRef, { style: 'from-right', start: 'top 80%' });
@@ -30,33 +25,31 @@ export default function Stays() {
       <span className="stays-deco left"><Mandala size={300} color="rgba(109,15,31,0.07)" /></span>
       <span className="stays-deco right"><Mandala size={220} color="rgba(212,175,55,0.12)" /></span>
 
-      <p className="section-tag">For Our Guests</p>
-      <h2 className="section-title">Where to Stay</h2>
+      <p className="section-tag">{t('stays.tag')}</p>
+      <h2 className="section-title shimmer">{t('stays.title')}</h2>
       <p className="section-sub">
-        Rest easy — a block of rooms has been booked for you. Just tell them the couple's names when you check in.
+        {t('stays.sub')}
       </p>
 
       <div className="stays-grid">
         <div className="stays-card preserve-3d" ref={infoRef}>
-          <span className="stays-badge">॥ Rooms Booked For Our Guests ॥</span>
+          <span className="stays-badge">{t('stays.badge')}</span>
 
-          <h3 className="stays-hotel">Golden Eagle</h3>
-          <p className="stays-city">Jaipur · Rajasthan</p>
+          <h3 className="stays-hotel">{t('stays.hotel')}</h3>
+          <p className="stays-city">{t('stays.city')}</p>
 
           <p className="stays-desc">
-            A haven of warm hospitality and old-world charm, tucked close to all the celebration venues. We've
-            reserved a comfortable block of rooms so our dearest guests can unwind, refresh, and be ready for every
-            ritual of the day.
+            {t('stays.desc')}
           </p>
 
           <ul className="stays-amenities">
             {AMENITIES.map((a) => (
-              <li key={a}>✦ {a}</li>
+              <li key={a}>✦ {t(a)}</li>
             ))}
           </ul>
 
           <p className="stays-note">
-            Please mention <strong>Akshay &amp; Kirti's wedding</strong> at the front desk for the reserved-rate block.
+            {t('stays.noteA')} <strong>"{t('invite.names')}"</strong> {t('stays.noteB')}
           </p>
 
           <a
@@ -65,7 +58,7 @@ export default function Stays() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Open in Google Maps
+            {t('stays.open')}
             <span className="stays-cta-arrow">↗</span>
           </a>
         </div>
@@ -81,8 +74,8 @@ export default function Stays() {
             />
           </div>
           <p className="stays-map-caption">
-            Golden Eagle · Jaipur
-            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">Get Directions →</a>
+            {t('stays.hotel')} · {t('stays.city')}
+            <a href={MAPS_URL} target="_blank" rel="noopener noreferrer">{t('events.l.venue')} →</a>
           </p>
         </div>
       </div>

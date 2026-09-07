@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+// Optional real wedding track. Drop an audio file in public/music/ and point
+// VITE_MUSIC_URL at it (e.g. VITE_MUSIC_URL=/music/shehnai.mp3) to play it
+// instead of the synthesized ambient loop below.
+const MUSIC_URL = import.meta.env.VITE_MUSIC_URL;
+
 const SCALE = [261.63, 293.66, 329.63, 392.0, 440.0]; // raga-ish pentatonic: C D E G A
 const SEQUENCE = [0, 1, 2, 3, 4, 3, 2, 1, 0, 2, 3, 4, 3, 2, 1];
 const BEAT = 0.34;
@@ -19,6 +24,7 @@ export default function useMusic() {
   const stepRef = useRef(0);
   const nextTimeRef = useRef(0);
   const timerRef = useRef(null);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     onRef.current = on;
@@ -29,11 +35,25 @@ export default function useMusic() {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
     if (ctxRef.current) {
       ctxRef.current.close().catch(() => {});
       ctxRef.current = null;
       masterRef.current = null;
     }
+  }, []);
+
+  const startTrack = useCallback(() => {
+    const audio = new Audio(MUSIC_URL);
+    audio.loop = true;
+    audio.volume = 0.35;
+    audioRef.current = audio;
+    audio.play().catch(() => {
+      audioRef.current = null;
+    });
   }, []);
 
   const start = useCallback(() => {
@@ -99,13 +119,17 @@ export default function useMusic() {
         localStorage.setItem(STORAGE_KEY, '0');
       } catch {}
     } else {
-      start();
+      if (MUSIC_URL) {
+        startTrack();
+      } else {
+        start();
+      }
       setOn(true);
       try {
         localStorage.setItem(STORAGE_KEY, '1');
       } catch {}
     }
-  }, [start, stop]);
+  }, [start, startTrack, stop]);
 
   // pause when the tab is hidden (no unexpected audio)
   useEffect(() => {

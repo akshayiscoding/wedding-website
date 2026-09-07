@@ -5,24 +5,26 @@ import useCountdown from '../hooks/useCountdown';
 import { useReveal } from '../hooks/useAnimations';
 import './Countdown.css';
 import Mandala from './Mandala';
+import { useLang } from '../i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const WEDDING_DATE = '2026-11-20T19:00:00+05:30';
 
-const UNITS = [
-  { key: 'days', label: 'Days' },
-  { key: 'hours', label: 'Hours' },
-  { key: 'minutes', label: 'Minutes' },
-  { key: 'seconds', label: 'Seconds' },
-];
-
 export default function Countdown() {
   const rootRef = useRef(null);
   const t = useCountdown(WEDDING_DATE);
   const prev = useRef(t);
+  const { t: tr } = useLang();
 
   useReveal(rootRef, { style: 'zoom' });
+
+  const UNITS = [
+    { key: 'days', label: tr('count.days') },
+    { key: 'hours', label: tr('count.hours') },
+    { key: 'minutes', label: tr('count.minutes') },
+    { key: 'seconds', label: tr('count.seconds') },
+  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -62,10 +64,10 @@ export default function Countdown() {
       <span className="count-mandala left"><Mandala size={280} color="rgba(109,15,31,0.07)" /></span>
       <span className="count-mandala right"><Mandala size={220} color="rgba(212,175,55,0.15)" /></span>
 
-      <p className="section-tag">Counting Every Heartbeat</p>
-      <h2 className="section-title">Save the Date</h2>
+      <p className="section-tag">{tr('count.tag')}</p>
+      <h2 className="section-title shimmer">{tr('count.title')}</h2>
       <p className="section-sub">
-        Friday, the twentieth of November, two thousand twenty-six · at the phool mahal lawns of Jaipur
+        {tr('count.sub')}
       </p>
 
       <div className="cd-frame preserve-3d">
@@ -91,7 +93,7 @@ export default function Countdown() {
 
         <div className="cd-note">
           <span className="cd-note-om">॥ ॐ ॥</span>
-          <span>Two hearts, one holy fire</span>
+          <span>{tr('count.note')}</span>
         </div>
       </div>
     </section>

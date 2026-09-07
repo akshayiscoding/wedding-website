@@ -1,0 +1,107 @@
+.dress {
+  position: relative;
+  padding: 7rem 2rem 8rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--ivory), var(--cream) 60%, var(--ivory));
+}
+
+.dress-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(212, 175, 55, 0.10), transparent 40%),
+    radial-gradient(circle at 6% 88%, rgba(109, 15, 31, 0.07), transparent 42%);
+  pointer-events: none;
+}
+
+.dress-deco {
+  position: absolute;
+  top: 60px;
+  right: -90px;
+  pointer-events: none;
+}
+
+.dress-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.dress-card {
+  border-radius: 22px;
+  background: #fffdf7;
+  box-shadow: 0 18px 40px rgba(109, 15, 31, 0.12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.dress-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 56px rgba(109, 15, 31, 0.18);
+}
+
+.dress-band {
+  height: 112px;
+  background: var(--band);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.dress-band::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 14px;
+  pointer-events: none;
+}
+.dress-band-icon {
+  font-size: 2.6rem;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
+  transform: translateY(2px);
+}
+
+.dress-body {
+  padding: 1.4rem 1.4rem 1.7rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.dress-ev {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(109, 15, 31, 0.75);
+  margin-bottom: 0.35rem;
+}
+.dress-wear {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--maroon);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+.dress-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+.dress-dots span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(109, 15, 31, 0.18);
+}

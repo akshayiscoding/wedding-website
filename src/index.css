@@ -170,6 +170,66 @@ section {
   transform: translateY(40px);
 }
 
+/* ---------- gold shimmer on headings ---------- */
+.shimmer {
+  color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    var(--deep-maroon) 0%,
+    var(--deep-maroon) 34%,
+    var(--gold-dark) 46%,
+    var(--gold) 50%,
+    var(--gold-dark) 54%,
+    var(--deep-maroon) 66%,
+    var(--deep-maroon) 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer-sweep 7s linear infinite;
+}
+.section-title.light.shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--ivory) 0%,
+    var(--ivory) 34%,
+    var(--gold-light) 46%,
+    var(--gold) 50%,
+    var(--gold-light) 54%,
+    var(--ivory) 66%,
+    var(--ivory) 100%
+  );
+}
+@keyframes shimmer-sweep {
+  to { background-position: -260% center; }
+}
+
+/* ---------- cursor trail ---------- */
+.cursor-trail-host {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  overflow: hidden;
+}
+.ct-spark {
+  position: fixed;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 55%, transparent 80%);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.75);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* print: global default (invitation modal overrides) */
+@media print {
+  .cursor-trail-host,
+  .chapter-rail,
+  .back-top {
+    display: none !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   html {

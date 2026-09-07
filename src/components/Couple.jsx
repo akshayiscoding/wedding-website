@@ -45,7 +45,7 @@ export default function Couple() {
       <span className="couple-deco deco-right"><Mandala size={260} color="rgba(212,175,55,0.12)" /></span>
 
       <p className="section-tag">Our Beloved Couple</p>
-      <h2 className="section-title">Two Souls, One Heart</h2>
+      <h2 className="section-title shimmer">Two Souls, One Heart</h2>
       <div className="divider">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a4 4 0 0 1 4 4c0 5-4 7-4 7s-4-2-4-7a4 4 0 0 1 4-4Zm7 10c0-3-1.5-4.5-3-4.5S13 8 13 11s1.5 4.5 3 4.5S19 14 19 11ZM5 11c0-3-1.5-4.5-3-4.5S1 8 1 11s1.5 4.5 3 4.5S5 14 5 11Zm14 6c0-2-1-3.5-2-3.5s-2 1.5-2 3.5 1 3.5 2 3.5 2-1.5 2-3.5Zm-14 0c0-2-1-3.5-2-3.5S1 15 1 17s1 3.5 2 3.5S5 19 5 17Zm7 5c0-2-1-3.5-2-3.5s-2 1.5-2 3.5S10 24 11 24s1-1 1-2Z"/></svg>
       </div>
@@ -58,7 +58,7 @@ export default function Couple() {
                 <span role="img" aria-label="groom">🤵</span>
               </div>
               <h3 className="couple-name">Akshay Kumar</h3>
-              <p className="couple-role">The Groom · उसका दुल्हा</p>
+              <p className="couple-role">The Groom</p>
               <p className="couple-desc">
                 The calm to her storm and the charm to her chaos. An engineer of hearts and systems alike — Akshay
                 found his forever in the girl who laughed at his very first joke.
@@ -76,8 +76,7 @@ export default function Couple() {
           <Mandala size={240} rotate={12} color="rgba(212,175,55,0.8)" />
           <div className="couple-heart">
             <span className="heart-emoji">❤️</span>
-            <span className="since">Since</span>
-            <span className="since-year">2018</span>
+            <span className="since">since forever</span>
           </div>
         </div>
 
@@ -88,7 +87,7 @@ export default function Couple() {
                 <span role="img" aria-label="bride">👰</span>
               </div>
               <h3 className="couple-name">Kirti Katta</h3>
-              <p className="couple-role">The Bride · उसकी दुल्हन</p>
+              <p className="couple-role">The Bride</p>
               <p className="couple-desc">
                 The melody to his rhythm and the spark to his steady. A designer of dreams and moments — Kirti said yes
                 to the boy who never forgot her birthday, even across timezones.

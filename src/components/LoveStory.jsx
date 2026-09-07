@@ -8,10 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const STORY = [
   {
-    year: 'April 2019',
+    year: '',
     icon: '💻',
     title: 'How It Began',
-    text: 'It all began in April 2019, when we met through a freelance project. What started as work soon turned into conversations, laughter, and a connection neither of us expected.',
+    text: 'We first met through a freelance project. What started as work soon turned into conversations, laughter, and a connection neither of us expected.',
   },
   {
     year: 'First Meet · Mumbai',
@@ -111,7 +111,7 @@ export default function LoveStory() {
 
       <div className="story-banner" ref={bannerRef}>
         <p className="section-tag light">Our Journey</p>
-        <h2 className="section-title light">The Love Story</h2>
+        <h2 className="section-title light shimmer">The Love Story</h2>
         <div className="divider light-variant">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.6-9.5-9C.5 8.6 2 5.5 5.1 5.5c2 0 3.6 1.2 4.4 3.1l2.5 4.6 2.5-4.6c.8-1.9 2.4-3.1 4.4-3.1 3.1 0 4.6 3.1 2.6 6.5C19 16.4 12 21 12 21Z"/></svg>
         </div>
@@ -120,9 +120,9 @@ export default function LoveStory() {
       <div className="story-viewport">
         <div className="story-track preserve-3d" ref={trackRef}>
           {STORY.map((item, i) => (
-            <article className={`story-card card-img-${i}`} key={item.year}>
+            <article className={`story-card card-img-${i}`} key={item.title}>
               <span className="story-icon">{item.icon}</span>
-              <span className="story-year">{item.year}</span>
+              {item.year && <span className="story-year">{item.year}</span>}
               <h3 className="story-title">{item.title}</h3>
               <p className="story-text">{item.text}</p>
               <span className="story-index">0{i + 1}</span>

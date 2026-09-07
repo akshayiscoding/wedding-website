@@ -61,7 +61,7 @@ export default function Gallery() {
     <section className="gallery" id="gallery" ref={rootRef}>
       <div className="gallery-bg" />
       <p className="section-tag">Treasured Moments</p>
-      <h2 className="section-title">A Glimpse of the Wonder</h2>
+      <h2 className="section-title shimmer">A Glimpse of the Wonder</h2>
       <p className="section-sub">A peek at the colours, the chaos, and the love that will fill these four days.</p>
 
       <div className="gallery-grid perspective-1000">

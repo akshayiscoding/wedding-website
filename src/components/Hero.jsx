@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Hero.css';
 import Mandala from './Mandala';
+import { useLang } from '../i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,7 @@ export default function Hero({ loaded = true }) {
   const rootRef = useRef(null);
   const medallionRef = useRef(null);
   const textRef = useRef(null);
+  const { t } = useLang();
 
   useEffect(() => {
     const textEl = textRef.current;
@@ -58,12 +60,6 @@ export default function Hero({ loaded = true }) {
           { opacity: 0, y: 24, scale: 0.8 },
           { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'back.out(2)' },
           2.1,
-        )
-        .fromTo(
-          '.hero-sub',
-          { opacity: 0, y: 26 },
-          { opacity: 1, y: 0, duration: 0.9 },
-          2.2,
         )
         .fromTo(
           '.hero-date',
@@ -268,14 +264,14 @@ export default function Hero({ loaded = true }) {
               <span className="mc-heart">❦</span>
               <span className="mc-k">K</span>
             </div>
-            <span className="mc-tag">shubh vivah</span>
+            <span className="mc-tag">{t('hero.tag')}</span>
           </div>
         </div>
 
-        <p className="hero-blessing">॥ श्री गणेशाय नमः ॥</p>
+        <p className="hero-blessing">{t('hero.blessing')}</p>
 
         <h1 className="hero-names">
-          <span className="hero-script">the wedding of</span>
+          <span className="hero-script">{t('hero.theWeddingOf')}</span>
           <span className="hero-name-row">
             <span className="hero-name">Akshay</span>
             <span className="hero-glyph">✦</span>
@@ -283,13 +279,12 @@ export default function Hero({ loaded = true }) {
           </span>
         </h1>
 
-        <span className="hero-pill">Save the Date</span>
+        <span className="hero-pill">{t('hero.pill')}</span>
 
-        <p className="hero-sub">together with their families, joyfully invite you to the celebration of their shubh vivah</p>
-        <p className="hero-date">Friday, 20 November 2026 · Jaipur, India</p>
+        <p className="hero-date">{t('hero.date')}</p>
 
         <a href="#couple" className="cta-btn">
-          <span>Begin the Celebration</span>
+          <span>{t('hero.begin')}</span>
           <span className="cta-arrow">↓</span>
         </a>
       </div>

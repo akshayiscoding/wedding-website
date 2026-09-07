@@ -5,15 +5,16 @@ import { useReveal, useTilt } from '../hooks/useAnimations';
 import { googleCalendarUrl, downloadIcs } from '../utils/calendar';
 import './Events.css';
 import Mandala from './Mandala';
+import Pheras from './Pheras';
+import { useLang } from '../i18n';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const DAYS = [
   {
     key: 'day-1',
-    day: 'Day One',
-    title: 'Mehendi & Cocktail',
-    hindi: 'मेहंदी और कॉकटेल',
+    dayKey: 'events.day1',
+    titleKey: 'events.title1',
     date: '18 November 2026',
     calendarDate: '2026-11-18',
     startTime: '09:00',
@@ -24,16 +25,15 @@ const DAYS = [
     color: ['#3a7d44', '#1e5a28'],
     desc: 'Henna spirals, jingling kada, golden hour frames — and the first toast of the celebration.',
     schedule: [
-      { time: 'Morning', label: 'Mehendi ceremony', emoji: '🖐️' },
-      { time: 'Daytime', label: 'Relax · photos · family time', emoji: '📸' },
-      { time: 'Night', label: 'Cocktail party', emoji: '🍸' },
+      { timeKey: 'events.t.morning', labelKey: 'events.l.mehendi', emoji: '🖐️' },
+      { timeKey: 'events.t.daytime', labelKey: 'events.l.photo', emoji: '📸' },
+      { timeKey: 'events.t.night', labelKey: 'events.l.cocktail', emoji: '🍸' },
     ],
   },
   {
     key: 'day-2',
-    day: 'Day Two',
-    title: 'Haldi, Tilak & Engagement',
-    hindi: 'हल्दी, तिलक और सगाई',
+    dayKey: 'events.day2',
+    titleKey: 'events.title2',
     date: '19 November 2026',
     calendarDate: '2026-11-19',
     startTime: '08:00',
@@ -44,17 +44,16 @@ const DAYS = [
     color: ['#e6a024', '#b8860b'],
     desc: 'Rituals of gold, red and bright turmeric — crowned by the ring, and a night of music.',
     schedule: [
-      { time: 'Morning', label: 'Haldi', emoji: '🌼' },
-      { time: 'Afternoon', label: 'Tilak ceremony', emoji: '🌺' },
-      { time: 'Evening · Night', label: 'Engagement', emoji: '💍' },
-      { time: 'Night', label: 'Musical · Sangeet night', emoji: '🎶' },
+      { timeKey: 'events.t.morning', labelKey: 'events.l.haldi', emoji: '🌼' },
+      { timeKey: 'events.t.daytime', labelKey: 'events.l.tilak', emoji: '🌺' },
+      { timeKey: 'events.t.evening', labelKey: 'events.l.engagement', emoji: '💍' },
+      { timeKey: 'events.t.night', labelKey: 'events.l.sangeet', emoji: '🎶' },
     ],
   },
   {
     key: 'day-3',
-    day: 'Day Three',
-    title: 'Wedding',
-    hindi: 'विवाह',
+    dayKey: 'events.day3',
+    titleKey: 'events.title3',
     date: '20 November 2026',
     calendarDate: '2026-11-20',
     startTime: '17:00',
@@ -65,10 +64,10 @@ const DAYS = [
     color: ['#8b1e3f', '#4a0814'],
     desc: 'The sacred fire, the garlands, and a promise made before the holy flames and heaven.',
     schedule: [
-      { time: 'Evening', label: 'Baraat', emoji: '🐎' },
-      { time: 'Dusk', label: 'Jaimala · Varmala — exchange of garlands', emoji: '🌸' },
-      { time: 'Night', label: 'Wedding rituals', emoji: '🪔' },
-      { time: 'Night', label: 'Pheras', emoji: '🔥' },
+      { timeKey: 'events.t.evening', labelKey: 'events.l.baraat', emoji: '🐎' },
+      { timeKey: 'events.t.dusk', labelKey: 'events.l.jaimala', emoji: '🌸' },
+      { timeKey: 'events.t.night', labelKey: 'events.l.rituals', emoji: '🪔' },
+      { timeKey: 'events.t.night', labelKey: 'events.l.pheras', emoji: '🔥' },
     ],
   },
 ];
@@ -76,6 +75,7 @@ const DAYS = [
 export default function Events() {
   const rootRef = useRef(null);
   const cardsRef = useRef(null);
+  const { t } = useLang();
 
   useReveal(cardsRef, { style: 'blur', start: 'top 80%' });
 
@@ -103,32 +103,36 @@ export default function Events() {
       <div className="events-bg" />
       <span className="events-deco"><Mandala size={320} color="rgba(212,175,55,0.12)" /></span>
 
-      <p className="section-tag">Celebrations</p>
-      <h2 className="section-title">The Festivities</h2>
-      <p className="section-sub">Three days of ritual and revelry — from the first swirl of henna to the final circle of the sacred fire.</p>
+      <p className="section-tag">{t('events.tag')}</p>
+      <h2 className="section-title shimmer">{t('events.title')}</h2>
+      <p className="section-sub">{t('events.sub')}</p>
 
       <div className="events-grid" ref={cardsRef}>
         {DAYS.map((day, i) => (
-          <DayCard key={day.title} day={day} index={i} />
+          <DayCard key={day.key} day={day} index={i} />
         ))}
       </div>
+
+      <Pheras />
     </section>
   );
 }
 
 function DayCard({ day, index }) {
   const cardRef = useRef(null);
+  const { t } = useLang();
   useTilt(cardRef, 10);
 
+  const title = t(day.titleKey);
   const mapsQuery = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(day.venueQuery)}`;
   const cal = {
     uid: day.key,
-    title: `Akshay & Kirti — ${day.title}`,
+    title: `Akshay & Kirti — ${title}`,
     date: day.calendarDate,
     startTime: day.startTime,
     durationHours: day.durationHours,
     location: day.location,
-    details: `${day.title} (${day.date}). Celebrate with Akshay & Kirti!`,
+    details: `${title} (${day.date}). Celebrate with Akshay & Kirti!`,
   };
 
   return (
@@ -139,27 +143,26 @@ function DayCard({ day, index }) {
     >
       <div className="day-top">
         <span className="day-icon">{day.icon}</span>
-        <span className="day-hindi">{day.hindi}</span>
       </div>
-      <p className="day-label">{day.day}</p>
-      <h3 className="day-name">{day.title}</h3>
+      <p className="day-label">{t(day.dayKey)}</p>
+      <h3 className="day-name">{title}</h3>
       <p className="day-date">{day.date}</p>
 
       <a className="day-venue" href={mapsQuery} target="_blank" rel="noopener noreferrer">
         <span className="day-venue-pin">📍</span>
         <span className="day-venue-text">{day.location}</span>
-        <span className="day-venue-go">Get Directions ↗</span>
+        <span className="day-venue-go">{t('events.l.venue')} ↗</span>
       </a>
 
       <p className="day-desc">{day.desc}</p>
 
       <ul className="day-schedule">
         {day.schedule.map((item) => (
-          <li className="day-item" key={item.label}>
+          <li className="day-item" key={item.labelKey}>
             <span className="day-item-emoji">{item.emoji}</span>
             <div className="day-item-body">
-              <span className="day-item-time">{item.time}</span>
-              <span className="day-item-label">{item.label}</span>
+              <span className="day-item-time">{t(item.timeKey)}</span>
+              <span className="day-item-label">{t(item.labelKey)}</span>
             </div>
           </li>
         ))}

@@ -1,0 +1,202 @@
+.invite-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  background: rgba(23, 8, 8, 0.78);
+  backdrop-filter: blur(8px);
+  animation: invite-fade 0.35s ease;
+}
+@keyframes invite-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.invite-card {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 92vh;
+  overflow: auto;
+  padding: 3rem clamp(1.4rem, 5vw, 2.8rem);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.28), transparent 55%),
+    linear-gradient(160deg, #fdf6e3, #f6e7cd);
+  color: var(--deep-maroon);
+  border: 1px solid rgba(212, 175, 55, 0.7);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+  text-align: center;
+}
+
+.invite-mandala {
+  position: absolute;
+  right: -70px;
+  top: -70px;
+  pointer-events: none;
+}
+
+.invite-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  background: rgba(255, 250, 240, 0.6);
+  color: var(--maroon);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.invite-close:hover {
+  transform: rotate(90deg);
+}
+
+.invite-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.invite-om {
+  font-family: var(--font-serif);
+  color: var(--gold-dark);
+  letter-spacing: 0.2em;
+  font-size: 0.85rem;
+}
+
+.invite-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--maroon);
+}
+
+.invite-p1 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #7a6058;
+}
+
+.invite-names {
+  font-family: var(--font-script);
+  font-size: clamp(2.8rem, 9vw, 4rem);
+  color: var(--maroon);
+  line-height: 1.1;
+  margin: 0.4rem 0 0.2rem;
+}
+
+.invite-mr {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #6b5b58;
+  max-width: 38ch;
+}
+
+.invite-days {
+  list-style: none;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--deep-maroon);
+}
+
+.invite-where {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--maroon);
+  margin-top: 0.2rem;
+}
+
+.invite-foot {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.invite-foot button {
+  min-height: 44px;
+  padding: 0.7rem 1.3rem;
+  border-radius: 40px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+.invite-print {
+  color: var(--ivory);
+  background: linear-gradient(135deg, var(--maroon), var(--wine));
+  border: 1px solid var(--maroon);
+}
+.invite-print:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(109, 15, 31, 0.35);
+}
+.invite-goto {
+  color: var(--maroon);
+  background: var(--ivory);
+  border: 1px solid rgba(212, 175, 55, 0.7);
+}
+.invite-goto:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invite-overlay {
+    animation: none;
+  }
+}
+
+/* ---------- print: only the invitation card ---------- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .invite-overlay {
+    position: static;
+    background: none;
+    backdrop-filter: none;
+    padding: 0;
+    display: block;
+  }
+  .invite-card,
+  .invite-card * {
+    visibility: visible;
+  }
+  .invite-card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    overflow: visible;
+  }
+  .invite-close,
+  .invite-goto,
+  .invite-mandala {
+    display: none !important;
+  }
+}

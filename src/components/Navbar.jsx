@@ -1,22 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import useMusic from '../hooks/useMusic';
+import { useLang } from '../i18n';
 import './Navbar.css';
 
 const LINKS = [
-  { label: 'Couple', href: '#couple' },
-  { label: 'Story', href: '#story' },
-  { label: 'Events', href: '#events' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Stays', href: '#stays' },
+  { label: 'nav.couple', href: '#couple' },
+  { label: 'nav.story', href: '#story' },
+  { label: 'nav.events', href: '#events' },
+  { label: 'nav.dress', href: '#dress' },
+  { label: 'nav.gallery', href: '#gallery' },
+  { label: 'nav.blessings', href: '#blessings' },
+  { label: 'nav.stays', href: '#stays' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onInvite }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
   const prevY = useRef(0);
   const { on: musicOn, toggle: toggleMusic } = useMusic();
+  const { lang, toggle: toggleLang, t } = useLang();
 
   useEffect(() => {
     const onScroll = () => {
@@ -51,12 +55,35 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} ref={navRef} aria-label="Main navigation">
       <a className="navbar-brand" href="#top">
-        <span className="brand-amp">A</span>
+        <span className="brand-name">Akshay</span>
         <span className="brand-heart">❦</span>
-        <span className="brand-amp">K</span>
+        <span className="brand-name">Kirti</span>
       </a>
 
       <div className="navbar-actions">
+        <button
+          className="nav-icon-btn"
+          type="button"
+          aria-label={t('nav.invitation')}
+          title={t('nav.invitation')}
+          onClick={() => {
+            setOpen(false);
+            onInvite?.();
+          }}
+        >
+          <span className="nav-icon-emoji">💌</span>
+        </button>
+
+        <button
+          className="nav-icon-btn lang-toggle"
+          type="button"
+          aria-label="Toggle language / भाषा बदलें"
+          title="EN / हिंदी"
+          onClick={toggleLang}
+        >
+          {lang === 'en' ? 'हिं' : 'EN'}
+        </button>
+
         <button
           className="music-toggle"
           type="button"
@@ -86,12 +113,12 @@ export default function Navbar() {
           <li key={l.href}>
             <a href={l.href} onClick={() => setOpen(false)}>
               <span className="nav-dot">◆</span>
-              {l.label}
+              {t(l.label)}
             </a>
           </li>
         ))}
         <li>
-          <a href="#rsvp" className="nav-cta" onClick={() => setOpen(false)}>RSVP</a>
+          <a href="#rsvp" className="nav-cta" onClick={() => setOpen(false)}>{t('nav.rsvp')}</a>
         </li>
       </ul>
     </nav>

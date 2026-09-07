@@ -1,0 +1,85 @@
+.chapter-rail {
+  position: fixed;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 95;
+  display: none;
+}
+
+.rail-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 0.8rem 0;
+}
+
+.rail-bar {
+  position: absolute;
+  left: 5px;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background: linear-gradient(180deg, var(--gold), var(--maroon));
+  border-radius: 4px;
+  transition: height 0.15s linear;
+}
+
+.rail-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+}
+
+.rail-dot-mark {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(109, 15, 31, 0.55);
+  background: var(--ivory);
+  transition: var(--transition);
+}
+.rail-dot.active .rail-dot-mark {
+  background: var(--gold);
+  border-color: var(--gold-dark);
+  box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.25);
+}
+
+.rail-label {
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--deep-maroon);
+  background: rgba(255, 250, 240, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  padding: 0.35rem 0.7rem;
+  transition: var(--transition);
+}
+.rail-dot:hover .rail-label,
+.rail-dot.active .rail-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (min-width: 1024px) {
+  .chapter-rail {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-dot-mark,
+  .rail-label {
+    transition: none;
+  }
+}

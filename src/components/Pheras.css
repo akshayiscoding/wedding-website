@@ -1,0 +1,219 @@
+.pheras {
+  position: relative;
+  margin: 4rem auto 0;
+  padding: 3.4rem 2rem 3.6rem;
+  max-width: 720px;
+  text-align: center;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.16), transparent 55%),
+    linear-gradient(160deg, #3c0d1c, #6d0f1f);
+  color: var(--ivory);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 30px 70px rgba(109, 15, 31, 0.4);
+  overflow: hidden;
+}
+
+.pheras-mandala {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.pheras-tag {
+  position: relative;
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--gold-light);
+}
+
+.pheras-title {
+  position: relative;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  margin: 0.2rem 0 0.6rem;
+}
+
+.pheras-sub {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 2rem;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 250, 240, 0.85);
+}
+
+.pheras-stage {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.pheras-diya-ring {
+  position: absolute;
+  inset: 0;
+}
+
+.pheras-diya {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 40px;
+  margin: -20px 0 0 -17px;
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+.pheras-diya.lit {
+  opacity: 1;
+}
+.ph-diya-flame {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 10px;
+  height: 16px;
+  margin-left: -5px;
+  background: radial-gradient(circle at 50% 80%, #fff3c4, #ffd166 45%, #ffa62b 75%, transparent 80%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform-origin: bottom center;
+  opacity: 0;
+}
+.pheras-diya.lit .ph-diya-flame {
+  opacity: 1;
+  animation: ph-flicker 1.4s ease-in-out infinite;
+}
+.ph-diya-bowl {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 30px;
+  height: 13px;
+  margin-left: -15px;
+  background: radial-gradient(ellipse at 50% 30%, #fffaf0, #f0d78c 60%, #d4af37);
+  border-radius: 50% 50% 35% 35% / 40% 40% 60% 60%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.pheras-fire {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 84px;
+  height: 104px;
+  margin: -52px 0 0 -42px;
+}
+.ph-glow {
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  width: 90px;
+  height: 90px;
+  margin-left: -45px;
+  background: radial-gradient(circle, rgba(255, 191, 64, 0.55), transparent 70%);
+  border-radius: 50%;
+}
+.ph-flame {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  width: 44px;
+  height: 74px;
+  margin-left: -22px;
+  background:
+    radial-gradient(circle at 50% 70%, #fff6d8 0%, #ffd166 30%, #ff9f1c 58%, transparent 75%);
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  filter: blur(0.4px) drop-shadow(0 0 18px rgba(255, 180, 60, 0.65));
+  transform-origin: bottom center;
+  mix-blend-mode: screen;
+}
+.ph-flame:nth-of-type(2) {
+  width: 26px;
+  height: 46px;
+  margin-left: -13px;
+  bottom: 24px;
+  background: radial-gradient(circle at 50% 70%, #fffdf2 0%, #ffe28a 45%, #ff9f1c 75%, transparent 80%);
+}
+.ph-fire-bowl {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 92px;
+  height: 30px;
+  margin-left: -46px;
+  background:
+    radial-gradient(ellipse at 50% 25%, #ffe6c2 0%, #ffb048 55%, #d46a1f 100%);
+  border-radius: 50% 50% 42% 42% / 30% 30% 70% 70%;
+  box-shadow: inset 0 -8px 18px rgba(120, 40, 0, 0.5), 0 10px 24px rgba(255, 140, 50, 0.35);
+}
+
+.pheras-count {
+  position: relative;
+  margin-top: 1.4rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  min-height: 1.6rem;
+  color: var(--gold-light);
+}
+
+.pheras-btn {
+  position: relative;
+  margin-top: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 50px;
+  padding: 0.8rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--deep-maroon);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
+}
+.pheras-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 38px rgba(212, 175, 55, 0.45);
+}
+.pheras-btn-om {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+}
+
+.ph-ember {
+  position: fixed;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, #fff3c4, #ffb048 60%, transparent 75%);
+  box-shadow: 0 0 10px rgba(255, 180, 60, 0.8);
+  z-index: 9998;
+}
+
+@keyframes ph-flicker {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.95; }
+  30% { transform: scaleY(1.25) scaleX(0.82); opacity: 1; }
+  60% { transform: scaleY(0.9) scaleX(1.15); opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ph-diya-flame,
+  .ph-flame,
+  .ph-glow,
+  .pheras-diya-ring {
+    animation: none !important;
+  }
+}

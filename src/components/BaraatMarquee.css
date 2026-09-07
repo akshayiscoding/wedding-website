@@ -1,0 +1,43 @@
+.baraat-marquee {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto 3.5rem;
+  max-width: 1180px;
+  padding: 0.7rem 0;
+  background: linear-gradient(90deg, transparent, rgba(109, 15, 31, 0.06) 20%, rgba(109, 15, 31, 0.06) 80%, transparent);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.baraat-track {
+  display: flex;
+  width: max-content;
+  animation: baraat-scroll 22s linear infinite;
+  will-change: transform;
+}
+
+.baraat-row {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding-right: 3rem;
+}
+
+.baraat-item {
+  font-size: 1.9rem;
+  display: inline-flex;
+}
+
+@keyframes baraat-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baraat-track {
+    animation: none;
+  }
+}
