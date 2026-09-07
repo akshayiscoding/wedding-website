@@ -87,7 +87,7 @@ export default function Couple() {
               <div className="avatar" style={{ background: gradient('#b8860b', '#7a1f33') }}>
                 <span role="img" aria-label="bride">👰</span>
               </div>
-              <h3 className="couple-name">Kirti Sharma</h3>
+              <h3 className="couple-name">Kirti Katta</h3>
               <p className="couple-role">The Bride · उसकी दुल्हन</p>
               <p className="couple-desc">
                 The melody to his rhythm and the spark to his steady. A designer of dreams and moments — Kirti said yes
