@@ -1,0 +1,52 @@
+.app {
+  opacity: 0;
+  min-height: 100vh;
+}
+
+#top {
+  scroll-margin-top: 0;
+}
+
+.back-top {
+  position: fixed;
+  right: 1.6rem;
+  bottom: 1.6rem;
+  z-index: 90;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ivory);
+  background: linear-gradient(135deg, var(--maroon), var(--wine));
+  box-shadow: 0 12px 28px rgba(109, 15, 31, 0.4);
+  opacity: 0;
+  transform: translateY(18px) scale(0.7);
+  pointer-events: none;
+  transition: var(--transition);
+}
+.back-top svg {
+  width: 22px;
+  height: 22px;
+}
+.back-top.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.back-top:hover {
+  transform: translateY(-4px) scale(1.06);
+}
+
+main {
+  overflow: clip;
+  position: relative;
+}
+
+/* native smooth anchor offset handled by scroll-margin */
+section[id] {
+  scroll-margin-top: 10px;
+}
