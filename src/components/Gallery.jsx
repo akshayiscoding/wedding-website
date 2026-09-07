@@ -73,9 +73,11 @@ export default function Gallery() {
           >
             <div
               className="gallery-visual"
+              role="img"
+              aria-label={`${shot.label} — wedding illustration`}
               style={{ background: `linear-gradient(150deg, ${shot.grad[0]}, ${shot.grad[1]})` }}
             >
-              <span className="gallery-emoji">{shot.emoji}</span>
+              <span className="gallery-emoji" aria-hidden="true">{shot.emoji}</span>
             </div>
             <figcaption className="gallery-label">
               <span>{shot.label}</span>

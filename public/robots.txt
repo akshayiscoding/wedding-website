@@ -1,0 +1,13 @@
+# robots.txt — Akshay & Kirti Wedding Website
+
+User-agent: *
+Allow: /
+
+# Block private / non-public areas (none currently served publicly)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /internal/
+Disallow: /*?preview=
+
+# Sitemap for search engines
+Sitemap: https://akshayandkirti.wedding/sitemap.xml

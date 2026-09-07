@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import useMusic from '../hooks/useMusic';
 import './Navbar.css';
 
 const LINKS = [
@@ -8,7 +9,6 @@ const LINKS = [
   { label: 'Events', href: '#events' },
   { label: 'Gallery', href: '#gallery' },
   { label: 'Stays', href: '#stays' },
-  { label: 'RSVP', href: '#rsvp' },
 ];
 
 export default function Navbar() {
@@ -16,6 +16,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef(null);
   const prevY = useRef(0);
+  const { on: musicOn, toggle: toggleMusic } = useMusic();
 
   useEffect(() => {
     const onScroll = () => {
@@ -38,25 +39,49 @@ export default function Navbar() {
     }
   }, [open]);
 
+  // close menu with Escape
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} ref={navRef}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} ref={navRef} aria-label="Main navigation">
       <a className="navbar-brand" href="#top">
         <span className="brand-amp">A</span>
         <span className="brand-heart">❦</span>
         <span className="brand-amp">K</span>
       </a>
 
-      <button
-        className={`hamburger ${open ? 'open' : ''}`}
-        aria-label="Toggle menu"
-        onClick={() => setOpen((o) => !o)}
-      >
-        <span /><span /><span />
-      </button>
+      <div className="navbar-actions">
+        <button
+          className="music-toggle"
+          type="button"
+          aria-pressed={musicOn}
+          aria-label={musicOn ? 'Pause our song' : 'Tap to play our song'}
+          title={musicOn ? 'Pause music' : 'Tap to play our song'}
+          onClick={toggleMusic}
+        >
+          <span className="music-emoji">{musicOn ? '🔊' : '🔇'}</span>
+        </button>
+
+        <button
+          className={`hamburger ${open ? 'open' : ''}`}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="site-menu"
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span /><span /><span />
+        </button>
+      </div>
 
       <div className={`mobile-backdrop ${open ? 'show' : ''}`} onClick={() => setOpen(false)} />
 
-      <ul className={`nav-menu ${open ? 'open' : ''}`}>
+      <ul className={`nav-menu ${open ? 'open' : ''}`} id="site-menu">
         {LINKS.map((l) => (
           <li key={l.href}>
             <a href={l.href} onClick={() => setOpen(false)}>

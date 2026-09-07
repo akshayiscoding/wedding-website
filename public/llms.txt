@@ -1,0 +1,34 @@
+# Akshay & Kirti — Wedding Website
+
+This is the official wedding website for **Akshay Kumar** and **Kirti Katta**, who are getting married in
+Jaipur, Rajasthan, India on **20 November 2026** (celebrations run 18–20 November 2026).
+
+The site is a single-page invitation that covers: the couple, their love story, the three days of
+wedding events, a gallery, guest accommodation info, and an RSVP form.
+
+## Key facts
+
+- Couple: Akshay Kumar & Kirti Katta
+- Wedding date: 20 November 2026, 7:00 PM — Phool Mahal, Jaipur
+- Celebration days:
+  - Day 1 · 18 Nov 2026 — Mehendi & Cocktail party
+  - Day 2 · 19 Nov 2026 — Haldi, Tilak & Engagement (Musical/Sangeet night)
+  - Day 3 · 20 Nov 2026 — Wedding: Baraat, Jaimala/Varmala, Rituals, Pheras
+- Guest accommodation: Golden Eagle, Jaipur (blocked room block)
+- RSVP: available on the website (no personal guest data is published)
+
+## Public sections
+
+- [Home](https://akshayandkirti.wedding/)
+- [The Couple](https://akshayandkirti.wedding/#couple)
+- [Our Story](https://akshayandkirti.wedding/#story)
+- [Events / Festivities](https://akshayandkirti.wedding/#events)
+- [Gallery](https://akshayandkirti.wedding/#gallery)
+- [Where to Stay](https://akshayandkirti.wedding/#stays)
+- [RSVP](https://akshayandkirti.wedding/#rsvp)
+
+## Note
+
+Replace `akshayandkirti.wedding` with the live domain before deploying. No private or guest information
+is exposed on this site. The wedding/venue address and contact details are shared privately with invited
+guests.

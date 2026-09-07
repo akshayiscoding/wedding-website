@@ -35,6 +35,8 @@ export default function Rsvp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // honeypot filled → silently drop (likely a bot)
+    if (form.website) return;
     setSent(true);
   };
 
@@ -58,14 +60,28 @@ export default function Rsvp() {
           </div>
         ) : (
           <form className="rsvp-form" onSubmit={handleSubmit}>
+            {/* honeypot field — hidden from humans, spam bots love it */}
+            <div className="rsvp-honeypot" aria-hidden="true">
+              <label htmlFor="rsvp-website">Leave this field empty</label>
+              <input
+                id="rsvp-website"
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website || ''}
+                onChange={handleChange}
+              />
+            </div>
+
             <div className="rsvp-row">
               <label className="rsvp-field">
                 <span>Your Name *</span>
-                <input required name="name" value={form.name} onChange={handleChange} placeholder="e.g. Rohan Verma" />
+                <input required autoComplete="name" name="name" value={form.name} onChange={handleChange} placeholder="e.g. Rohan Verma" />
               </label>
               <label className="rsvp-field">
                 <span>Email *</span>
-                <input required type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" />
+                <input required type="email" autoComplete="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" />
               </label>
             </div>
             <div className="rsvp-row">

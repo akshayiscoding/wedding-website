@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReveal, useTilt } from '../hooks/useAnimations';
+import { googleCalendarUrl, downloadIcs } from '../utils/calendar';
 import './Events.css';
 import Mandala from './Mandala';
 
@@ -9,10 +10,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const DAYS = [
   {
+    key: 'day-1',
     day: 'Day One',
     title: 'Mehendi & Cocktail',
     hindi: 'मेहंदी और कॉकटेल',
     date: '18 November 2026',
+    calendarDate: '2026-11-18',
+    startTime: '09:00',
+    durationHours: 14,
+    location: 'Golden Eagle · Garden, Jaipur',
+    venueQuery: 'Golden Eagle Jaipur',
     icon: '🖐️',
     color: ['#3a7d44', '#1e5a28'],
     desc: 'Henna spirals, jingling kada, golden hour frames — and the first toast of the celebration.',
@@ -23,10 +30,16 @@ const DAYS = [
     ],
   },
   {
+    key: 'day-2',
     day: 'Day Two',
     title: 'Haldi, Tilak & Engagement',
     hindi: 'हल्दी, तिलक और सगाई',
     date: '19 November 2026',
+    calendarDate: '2026-11-19',
+    startTime: '08:00',
+    durationHours: 15,
+    location: 'Golden Eagle · Lawns & Ballroom, Jaipur',
+    venueQuery: 'Golden Eagle Jaipur',
     icon: '🌼',
     color: ['#e6a024', '#b8860b'],
     desc: 'Rituals of gold, red and bright turmeric — crowned by the ring, and a night of music.',
@@ -38,10 +51,16 @@ const DAYS = [
     ],
   },
   {
+    key: 'day-3',
     day: 'Day Three',
     title: 'Wedding',
     hindi: 'विवाह',
     date: '20 November 2026',
+    calendarDate: '2026-11-20',
+    startTime: '17:00',
+    durationHours: 6,
+    location: 'Phool Mahal · Jaipur',
+    venueQuery: 'Phool Mahal Jaipur',
     icon: '🪔',
     color: ['#8b1e3f', '#4a0814'],
     desc: 'The sacred fire, the garlands, and a promise made before the holy flames and heaven.',
@@ -101,6 +120,17 @@ function DayCard({ day, index }) {
   const cardRef = useRef(null);
   useTilt(cardRef, 10);
 
+  const mapsQuery = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(day.venueQuery)}`;
+  const cal = {
+    uid: day.key,
+    title: `Akshay & Kirti — ${day.title}`,
+    date: day.calendarDate,
+    startTime: day.startTime,
+    durationHours: day.durationHours,
+    location: day.location,
+    details: `${day.title} (${day.date}). Celebrate with Akshay & Kirti!`,
+  };
+
   return (
     <article
       ref={cardRef}
@@ -114,6 +144,13 @@ function DayCard({ day, index }) {
       <p className="day-label">{day.day}</p>
       <h3 className="day-name">{day.title}</h3>
       <p className="day-date">{day.date}</p>
+
+      <a className="day-venue" href={mapsQuery} target="_blank" rel="noopener noreferrer">
+        <span className="day-venue-pin">📍</span>
+        <span className="day-venue-text">{day.location}</span>
+        <span className="day-venue-go">Get Directions ↗</span>
+      </a>
+
       <p className="day-desc">{day.desc}</p>
 
       <ul className="day-schedule">
@@ -127,6 +164,15 @@ function DayCard({ day, index }) {
           </li>
         ))}
       </ul>
+
+      <div className="day-actions">
+        <a className="day-cal-btn" href={googleCalendarUrl(cal)} target="_blank" rel="noopener noreferrer">
+          <span className="day-cal-icon">🗓</span> Google
+        </a>
+        <button type="button" className="day-cal-btn" onClick={() => downloadIcs(cal)}>
+          <span className="day-cal-icon">📥</span> Apple / Outlook
+        </button>
+      </div>
 
       <div className="event-rings">
         <span />

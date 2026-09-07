@@ -1,0 +1,16 @@
+{
+  "name": "Akshay & Kirti — We're Getting Married",
+  "short_name": "Akshay ❦ Kirti",
+  "description": "Join Akshay Kumar and Kirti Katta as they celebrate three days of love in Jaipur, 18–20 November 2026.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdf6e3",
+  "theme_color": "#6d0f1f",
+  "lang": "en-IN",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

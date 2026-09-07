@@ -88,6 +88,15 @@
   background: #ffffff;
 }
 
+/* honeypot trap — visually hidden but present for bots */
+.rsvp-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .rsvp-btn {
   align-self: center;
   padding: 0.95rem 2.4rem;

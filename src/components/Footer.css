@@ -1,6 +1,6 @@
 .footer {
   position: relative;
-  padding: 5rem 2rem 3rem;
+  padding: 5rem 2rem calc(3rem + var(--safe-bottom));
   text-align: center;
   overflow: hidden;
   background:

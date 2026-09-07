@@ -10,10 +10,11 @@
       <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
-  <rect width="512" height="512" rx="112" fill="url(#glow)"/>
+  <rect x="8" y="8" width="496" height="496" rx="108" fill="url(#bg)"/>
+  <rect x="8" y="8" width="496" height="496" rx="108" fill="url(#glow)"/>
   <circle cx="256" cy="256" r="176" fill="none" stroke="#d4af37" stroke-opacity="0.55" stroke-width="3"/>
   <circle cx="256" cy="256" r="160" fill="none" stroke="#d4af37" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="4 9"/>
   <text x="256" y="286" text-anchor="middle" font-family="Didot, Georgia, serif" font-weight="700" font-size="128" fill="#f0d78c">A ❦ K</text>
   <text x="256" y="352" text-anchor="middle" font-family="Avenir, Helvetica, sans-serif" font-size="20" letter-spacing="12" fill="#d4af37">SHUBH VIVAH</text>
+  <circle cx="256" cy="256" r="14" fill="#d4af37" fill-opacity="0.0"/>
 </svg>
